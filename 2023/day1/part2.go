@@ -7,7 +7,7 @@ import (
 )
 
 func part2(scanner *bufio.Scanner) int {
-	wordToNum := []string{"_", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"}
+	wordToNum := []string{"_", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 	sum := 0
 	for scanner.Scan() {
 		line := scanner.Text()

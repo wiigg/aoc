@@ -1,16 +1,23 @@
 package main
 
 import (
-	"bufio"
 	"regexp"
 	"strconv"
 )
 
 var reNum = regexp.MustCompile(`\d+`)
 
-var rows = []string{}
-
 func isSymbolAdjacent(row, col int) bool {
+	isSymbol := func(r, c int) bool {
+		char := rows[r][c]
+		return char != '.' && (char < '0' || char > '9')
+	}
+
+	isInBounds := func(r, c int) bool {
+		return r >= 0 && r < len(rows) &&
+			c >= 0 && c < len(rows[r])
+	}
+
 	for di := -1; di <= 1; di++ {
 		for dj := -1; dj <= 1; dj++ {
 			if di == 0 && dj == 0 {
@@ -20,10 +27,7 @@ func isSymbolAdjacent(row, col int) bool {
 			adRow := row + di
 			adCol := col + dj
 
-			if adRow >= 0 && adRow < len(rows) &&
-				adCol >= 0 && adCol < len(rows[adRow]) &&
-				rows[adRow][adCol] != '.' &&
-				(rows[adRow][adCol] < '0' || rows[adRow][adCol] > '9') {
+			if isInBounds(adRow, adCol) && isSymbol(adRow, adCol) {
 				return true
 			}
 		}
@@ -31,11 +35,7 @@ func isSymbolAdjacent(row, col int) bool {
 	return false
 }
 
-func part1(scanner *bufio.Scanner) int {
-	for scanner.Scan() {
-		rows = append(rows, scanner.Text())
-	}
-
+func part1() int {
 	sum := 0
 	for i, row := range rows {
 		numMatch := reNum.FindAllStringIndex(row, -1)

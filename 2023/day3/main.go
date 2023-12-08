@@ -9,6 +9,8 @@ import (
 
 const filename = "input.txt"
 
+var rows = []string{}
+
 func main() {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -18,12 +20,13 @@ func main() {
 
 	scanner := bufio.NewScanner(file)
 
-	result1 := part1(scanner)
+	for scanner.Scan() {
+		rows = append(rows, scanner.Text())
+	}
+
+	result1 := part1()
 	fmt.Println("Part 1 result:", result1)
 
-	// file.Seek(0, 0)
-	// scanner = bufio.NewScanner(file)
-
-	// result2 := part2(scanner)
-	// fmt.Println("Part 2 result:", result2)
+	result2 := part2()
+	fmt.Println("Part 2 result:", result2)
 }
