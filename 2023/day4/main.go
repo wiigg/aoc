@@ -21,9 +21,9 @@ func main() {
 	result1 := part1(scanner)
 	fmt.Println("Part 1 result:", result1)
 
-	// file.Seek(0, 0)
-	// scanner = bufio.NewScanner(file)
+	file.Seek(0, 0)
+	scanner = bufio.NewScanner(file)
 
-	// result2 := part2(scanner)
-	// fmt.Println("Part 2 result:", result2)
+	result2 := part2(scanner)
+	fmt.Println("Part 2 result:", result2)
 }
