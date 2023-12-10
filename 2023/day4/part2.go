@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -28,7 +27,6 @@ func part2(scanner *bufio.Scanner) int {
 				count++
 			}
 		}
-		fmt.Println(copies)
 		total += copies[0] + 1
 		copies = copies[1:]
 	}
